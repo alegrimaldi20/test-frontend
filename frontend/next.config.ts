@@ -9,9 +9,8 @@ const nextConfig: NextConfig = {
         hostname: 'lite-tech-api.litebox.ai',
       },
       {
-        protocol: 'http',
-        hostname: 'localhost',
-        port: '3001',
+        protocol: 'https',
+        hostname: 'test-backend-production-41a9.up.railway.app',
       },
     ],
   },
