@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import Link from 'next/link';
-import { GetServerSideProps } from 'next';
+import { GetStaticProps } from 'next';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import Card from '../components/Card';
@@ -175,7 +175,7 @@ const Home: React.FC<{ initialPosts: Post[] }> = ({ initialPosts }) => {
   );
 };
 
-export const getServerSideProps: GetServerSideProps = async () => {
+export const getStaticProps: GetStaticProps = async () => {
   try {
     const response = await fetch('https://lite-tech-api.litebox.ai/api/posts');
     const json = await response.json();
@@ -190,9 +190,9 @@ export const getServerSideProps: GetServerSideProps = async () => {
         : 'https://via.placeholder.com/600x400',
     }));
 
-    return { props: { initialPosts } };
+    return { props: { initialPosts }, revalidate: 60 };
   } catch {
-    return { props: { initialPosts: [] } };
+    return { props: { initialPosts: [] }, revalidate: 60 };
   }
 };
 
